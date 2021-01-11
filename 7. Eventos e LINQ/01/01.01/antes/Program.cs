@@ -7,20 +7,19 @@ namespace _01_01
         static void Main(string[] args)
         {
             MyRobot myRobot = new MyRobot();
+            myRobot.OnFalar += Saudacao;
             myRobot.OnFalar += Speak;
 
-            myRobot.Falar("Olá, eu sou um robô!");
+            myRobot.Falar("Olá, i'm Robot");
         }
 
+        static void Saudacao(object sender, RobotEventArgs args)
+        {
+            Console.WriteLine($"Saudação - {args.Fala}");
+        }
         static void Speak(object sender, RobotEventArgs args)
         {
-            Console.WriteLine(args.Fala);
-            string inputText;
-            do
-            {
-                inputText = Console.ReadLine();
-                Console.WriteLine(inputText);
-            } while (inputText != "-");
+            Console.WriteLine($"Speak - {args.Fala}");
         }
     }
 }

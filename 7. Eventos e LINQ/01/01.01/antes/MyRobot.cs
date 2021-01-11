@@ -10,11 +10,13 @@ namespace _01_01
 
         public void Falar(string fala)
         {
-            if (OnFalar != null)
+            foreach (var manipulador in OnFalar.GetInvocationList())
             {
-                OnFalar(this, new RobotEventArgs(fala));
+                manipulador.DynamicInvoke(this, new RobotEventArgs(fala));
                 Console.WriteLine("********************************************************");
             }
+
+
         }
     }
 }
